@@ -3,7 +3,7 @@ import {beforeEach} from "mocha";
 
 import Player from '../src/Player'
 import Command from '../src/commands/Command'
-import Response from '../src/Response'
+import Response from '../src/responses/Response'
 
 describe('player status test', () => {
     let player;

@@ -15,6 +15,6 @@ export default class SellLandCommand extends Command {
         if (targetIndex !== -1) {
             player.lands.splice(targetIndex, 1);
         }
-        return "WAIT_FOR_COMMAND";
+        return 'WAIT_FOR_COMMAND';
     }
 }

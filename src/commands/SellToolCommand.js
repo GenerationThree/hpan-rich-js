@@ -13,6 +13,6 @@ export default class SellToolCommand {
             player.tools.splice(targetIndex, 1);
         }
         
-        return "WAIT_FOR_COMMAND";
+        return 'WAIT_FOR_COMMAND';
     }
 }

@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import {beforeEach} from "mocha";
+import {beforeEach} from 'mocha';
 
 import Player from '../src/Player'
 import SellToolCommand from '../src/commands/SellToolCommand'
@@ -19,11 +19,11 @@ describe('sell tool test', () => {
     })
     
     it('should wait for response after executing sell tool command', () => {
-        expect(player.status).to.equal("WAIT_FOR_COMMAND");
+        expect(player.status).to.equal('WAIT_FOR_COMMAND');
         
         player.execute(sellToolOneCommand);  
              
-        expect(player.status).to.equal("WAIT_FOR_COMMAND");
+        expect(player.status).to.equal('WAIT_FOR_COMMAND');
     })
 
     it('should sell tool when having it', () => {

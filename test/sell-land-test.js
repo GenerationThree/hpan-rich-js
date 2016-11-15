@@ -19,11 +19,11 @@ describe('sell land test', () => {
     })
 
     it('should wait for response after executing sell land command', () => {
-        expect(player.status).to.equal("WAIT_FOR_COMMAND");
+        expect(player.status).to.equal('WAIT_FOR_COMMAND');
 
         player.execute(sellLandCommand);
 
-        expect(player.status).to.equal("WAIT_FOR_COMMAND");
+        expect(player.status).to.equal('WAIT_FOR_COMMAND');
     })
 
     it('should not sell land when not having it', () => {
@@ -31,6 +31,6 @@ describe('sell land test', () => {
 
         player.execute(sellLandCommand);
 
-        expect(player.lands.length).to.equal(1)
+        expect(player.lands.length).to.equal(1);
     })
 });
