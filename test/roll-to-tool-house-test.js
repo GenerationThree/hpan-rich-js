@@ -38,7 +38,7 @@ describe('roll to tool house test', () => {
         }
     });
 
-    it('should_wait_for_response_when_roll_to_to', () => {
+    it('should_wait_for_response_when_roll_to_tool_house', () => {
         expect(player.status).to.equal('WAIT_FOR_COMMAND');
 
         player.execute(rollCommand);

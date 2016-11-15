@@ -9,4 +9,9 @@ export default class NormalLand {
         const basicFee = this.price / 2;
         return basicFee * Math.pow(2, this.level);
     }
+
+    levelUp() {
+        this.level++;
+    }
+
 }

@@ -1,5 +1,6 @@
 import Command from './Command'
 import ToolHouse from '../lands/ToolHouse'
+import GiftHouse from "../lands/GiftHouse";
 
 export default class RollCommand extends Command{
     constructor(gameMap) {
@@ -12,6 +13,10 @@ export default class RollCommand extends Command{
         let currentLand = player.currentLand;
         
         if (currentLand instanceof ToolHouse) {
+            return 'WAIT_FOR_RESPONSE';
+        }
+
+        if (currentLand instanceof GiftHouse) {
             return 'WAIT_FOR_RESPONSE';
         }
         

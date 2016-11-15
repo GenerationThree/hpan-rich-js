@@ -8,6 +8,7 @@ export default class Player {
         this.maxToolNum = 10;
         this.lands = [];
         this.isLucky = false;
+        this.luckyRounds = 0;
         this.isInPrison = false;
     }
     
@@ -31,7 +32,7 @@ export default class Player {
         const currentLevel = this.currentLand.level;
         
         if (currentLevel < 3 && this.canPayMoney(this.currentLand.price)) {
-            this.levelUp();
+            this.currentLand.levelUp();
             this.payMoney(this.currentLand.price);
         }
     }
@@ -42,6 +43,18 @@ export default class Player {
         if (this.canPayPoints(points) && !this.isToolBagFull()) {
             this.payPoints(points);
             this.tools.push(this.currentLand.getTool());
+        }
+    }
+
+    getGift(giftId) {
+        if (giftId === 1) {
+            this.earnMoney(2000);
+        }
+        if (giftId === 2) {
+            this.earnPoints(200);
+        }
+        if (giftId === 3) {
+            this.becomeLucky();
         }
     }
     
@@ -61,15 +74,19 @@ export default class Player {
         return this.points >= points;
     }
     
-    earn(price) {
+    earnMoney(price) {
         this.money += price;
     }
 
+    earnPoints(points) {
+        this.points += points;
+    }
+    
     payPassingFee() {
         if (!this.isLucky && !this.currentLand.owner.isInPrison) {
             const passingFee = this.currentLand.getPassingFee();
             this.payMoney(passingFee);
-            this.currentLand.owner.earn(passingFee);
+            this.currentLand.owner.earnMoney(passingFee);
         }
     }
     
@@ -85,7 +102,8 @@ export default class Player {
         return this.tools.length === this.maxToolNum;
     }
 
-    levelUp() {
-        this.currentLand.level++;
+    becomeLucky() {
+        this.isLucky = true;
+        this.luckyRounds = 5;
     }
 }
