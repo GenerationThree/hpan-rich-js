@@ -21,20 +21,20 @@ export default class RollCommand extends Command{
             for (let i = 1; i <= step; i++) {
                 const nextLand = this.gameMap.move(player.currentLand, i);
                 if (nextLand.isBlockered) {
-                    player.currentLand = nextLand;
+                    player.moveTo(nextLand);
                     nextLand.isBlockered = false;
                     return 'END_TURN';
                 }
 
                 if (nextLand.isBombed) {
-                    player.currentLand = this.gameMap.findHospital();
+                    player.moveTo(this.gameMap.findHospital());
                     player.hospitalised();
                     nextLand.isBombed = false;
                     return 'END_TURN';
                 }
             }
             
-            player.currentLand = this.gameMap.move(player.currentLand, step);
+            player.moveTo(this.gameMap.move(player.currentLand, step));
             player.isInPrison = false;
             player.isInHospital = false;
         }

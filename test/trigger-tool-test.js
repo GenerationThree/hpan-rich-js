@@ -7,7 +7,7 @@ import GameMap from '../src/GameMap'
 import Hospital from '../src/lands/Hospital';
 import NormalLand from "../src/lands/NormalLand";
 
-describe('roll to prison test', () => {
+describe('trigger tool test', () => {
     let player;
     let rollCommand;
     let start;
@@ -42,10 +42,9 @@ describe('roll to prison test', () => {
     })
 
     it('should_end_turn_when_triggering_a_bomb_on_the_way', () => {
-        gameMap = new GameMap(start, bombLand, land2);
+        gameMap = new GameMap(start, bombLand, land2, hospital);
         rollCommand = new RollCommand(gameMap);
-
-
+        
         player.execute(rollCommand);
 
         expect(player.status).to.equal('END_TURN');

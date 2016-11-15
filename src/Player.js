@@ -25,6 +25,12 @@ export default class Player {
         this.status = response.respond(this);
     }
 
+    moveTo(land) {
+        this.currentLand.players.pop(this);
+        this.currentLand = land;
+        land.players.push(this);
+    }
+    
     buyCurrentLand() {
         if (this.canPayMoney(this.currentLand.price)) {
             this.currentLand.owner = this;

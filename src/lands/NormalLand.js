@@ -5,6 +5,7 @@ export default class NormalLand {
         this.level = 0;
         this.isBlockered = false;
         this.isBombed = false;
+        this.players = []; 
     }
 
     getPassingFee() {
@@ -14,6 +15,15 @@ export default class NormalLand {
 
     levelUp() {
         this.level++;
+    }
+
+    hasPlayOn() {
+        return this.players.length !== 0
+    }
+
+    clearTool() {
+        this.isBlockered = false;
+        this.isBombed = false;
     }
 
 }
