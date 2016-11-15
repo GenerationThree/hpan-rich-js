@@ -2,6 +2,7 @@ import Command from './Command'
 import ToolHouse from '../lands/ToolHouse'
 import GiftHouse from "../lands/GiftHouse";
 import Prison from "../lands/Prison";
+import Mine from "../lands/Mine";
 
 export default class RollCommand extends Command{
     constructor(gameMap) {
@@ -25,6 +26,11 @@ export default class RollCommand extends Command{
 
         if (currentLand instanceof GiftHouse) {
             return 'WAIT_FOR_RESPONSE';
+        }
+
+        if (currentLand instanceof Mine) {
+            player.earnPoints(currentLand.points);
+            return 'END_TURN';
         }
 
         if (currentLand instanceof Prison) {

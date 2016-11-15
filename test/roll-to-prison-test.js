@@ -28,7 +28,7 @@ describe('roll to prison test', () => {
         }
     });
 
-    it('should_end_turn_when_roll_to_prisond', () => {
+    it('should_end_turn_when_roll_to_prison', () => {
         expect(player.status).to.equal('WAIT_FOR_COMMAND');
 
         player.execute(rollCommand);
