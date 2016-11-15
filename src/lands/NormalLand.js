@@ -3,6 +3,8 @@ export default class NormalLand {
         this.position = position;
         this.price = price;
         this.level = 0;
+        this.isBlockered = false;
+        this.isBombed = false;
     }
 
     getPassingFee() {

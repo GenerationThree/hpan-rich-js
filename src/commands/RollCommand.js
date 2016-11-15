@@ -3,6 +3,7 @@ import ToolHouse from '../lands/ToolHouse'
 import GiftHouse from "../lands/GiftHouse";
 import Prison from "../lands/Prison";
 import Mine from "../lands/Mine";
+import Hospital from "../lands/Hospital";
 
 export default class RollCommand extends Command{
     constructor(gameMap) {
@@ -10,12 +11,32 @@ export default class RollCommand extends Command{
         this.gameMap = gameMap;
     }
     
+    
     execute(player) {
-        if (player.currentLand instanceof Prison && player.byeRoundLeft > 0) {
+        if ((player.currentLand instanceof Prison || player.currentLand instanceof Hospital)  && player.byeRoundLeft > 0) {
             player.byeRoundLeft --;
         } else {
-            player.currentLand = this.gameMap.move(player.currentLand, player.roll())
+            const step = player.roll();
+            
+            for (let i = 1; i <= step; i++) {
+                const nextLand = this.gameMap.move(player.currentLand, i);
+                if (nextLand.isBlockered) {
+                    player.currentLand = nextLand;
+                    nextLand.isBlockered = false;
+                    return 'END_TURN';
+                }
+
+                if (nextLand.isBombed) {
+                    player.currentLand = this.gameMap.findHospital();
+                    player.hospitalised();
+                    nextLand.isBombed = false;
+                    return 'END_TURN';
+                }
+            }
+            
+            player.currentLand = this.gameMap.move(player.currentLand, step);
             player.isInPrison = false;
+            player.isInHospital = false;
         }
         
         let currentLand = player.currentLand;

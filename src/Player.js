@@ -12,6 +12,7 @@ export default class Player {
         this.isLucky = false;
         this.luckyRounds = 0;
         this.isInPrison = false;
+        this.isInHospital = false;
         this.byeRoundLeft = 0;
         this.currentLand = new NormalLand(0);
     }
@@ -114,6 +115,11 @@ export default class Player {
     inprisoned() {
         this.isInPrison = true;
         this.byeRoundLeft = 2;
+    }
+    
+    hospitalised() {
+        this.isInHospital = true;
+        this.byeRoundLeft = 3;
     }
     
     roll() {
