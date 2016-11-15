@@ -2,8 +2,10 @@ export default class Player {
     constructor(id, initMoney) {
         this.id = id;
         this.money = initMoney;
+        this.points = 0;
         this.status = 'WAIT_FOR_COMMAND';
         this.tools = [];
+        this.maxToolNum = 10;
         this.lands = [];
         this.isLucky = false;
         this.isInPrison = false;
@@ -18,29 +20,45 @@ export default class Player {
     }
 
     buyCurrentLand() {
-        if (this.canPay(this.currentLand.price)) {
+        if (this.canPayMoney(this.currentLand.price)) {
             this.currentLand.owner = this;
-            this.pay(this.currentLand.price);
+            this.payMoney(this.currentLand.price);
             this.lands.push(this.currentLand);
         }   
     }
 
     updateCurrentLand() {
-        let currentLevel = this.currentLand.level;
+        const currentLevel = this.currentLand.level;
         
-        if (currentLevel < 3 && this.canPay(this.currentLand.price)) {
+        if (currentLevel < 3 && this.canPayMoney(this.currentLand.price)) {
             this.levelUp();
-            this.pay(this.currentLand.price);
+            this.payMoney(this.currentLand.price);
+        }
+    }
+
+    buyTool(toolId) {
+        const points = this.currentLand.getTool(toolId).points;
+        
+        if (this.canPayPoints(points) && !this.isToolBagFull()) {
+            this.payPoints(points);
+            this.tools.push(this.currentLand.getTool());
         }
     }
     
-    pay(price) {
+    payMoney(price) {
         this.money -= price;
     }
+
+    payPoints(points) {
+        this.points -= points;
+    }
     
-    
-    canPay(price) {
+    canPayMoney(price) {
         return this.money >= price;
+    }
+    
+    canPayPoints(points) {
+        return this.points >= points;
     }
     
     earn(price) {
@@ -50,13 +68,21 @@ export default class Player {
     payPassingFee() {
         if (!this.isLucky && !this.currentLand.owner.isInPrison) {
             const passingFee = this.currentLand.getPassingFee();
-            this.pay(passingFee);
+            this.payMoney(passingFee);
             this.currentLand.owner.earn(passingFee);
         }
     }
     
     hasLand(land) {
         return this.lands.indexOf(land) !== -1;
+    }
+    
+    hasTool(tool) {
+        return this.tools.indexOf(tool) !== -1;
+    }
+
+    isToolBagFull() {
+        return this.tools.length === this.maxToolNum;
     }
 
     levelUp() {

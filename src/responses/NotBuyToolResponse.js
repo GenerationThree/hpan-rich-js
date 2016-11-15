@@ -1,10 +1,10 @@
-import Response from './Response';
+import Response from './Response'
 
-export default class NotBuyLandResponse extends Response{
+export default class NotBuyToolResponse extends Response {
     constructor() {
         super();
     }
-    
+
     respond(player) {
         return 'END_TURN';
     }

@@ -6,7 +6,7 @@ import RollCommand from '../src/commands/RollCommand'
 import BuyLandResponse from '../src/responses/BuyLandResponse'
 import NotBuyLandResponse from '../src/responses/NotBuyLandResponse'
 import GameMap from '../src/GameMap'
-import Land from '../src/Land';
+import Land from '../src/lands/NormalLand';
 
 
 describe('roll to empty land test', () => {

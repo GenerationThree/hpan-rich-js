@@ -1,5 +1,7 @@
 export default class Tool {
-    constructor(id) {
+    constructor(id, points) {
         this.id = id;
+        this.points = points;
     }
+    
 }

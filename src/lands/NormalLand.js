@@ -1,4 +1,4 @@
-export default class Land {
+export default class NormalLand {
     constructor(position, price) {
         this.position = position;
         this.price = price;

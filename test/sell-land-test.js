@@ -3,7 +3,7 @@ import {beforeEach} from 'mocha'
 
 import Player from '../src/Player'
 import SellLandCommand from '../src/commands/SellLandCommand'
-import Land from '../src/Land.js'
+import Land from '../src/lands/NormalLand.js'
 
 describe('sell land test', () => {
     let player;
@@ -18,7 +18,7 @@ describe('sell land test', () => {
         land2 = new Land(2);
     })
 
-    it('should wait for response after executing sell land command', () => {
+    it('should wait for command after executing sell land command', () => {
         expect(player.status).to.equal('WAIT_FOR_COMMAND');
 
         player.execute(sellLandCommand);

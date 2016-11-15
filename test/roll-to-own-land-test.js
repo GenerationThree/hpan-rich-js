@@ -6,7 +6,7 @@ import RollCommand from '../src/commands/RollCommand'
 import UpdateLandResponse from '../src/responses/UpdateLandResponse'
 import NotUpdateLandResponse from '../src/responses/NotUpdateLandResponse'
 import GameMap from '../src/GameMap'
-import Land from '../src/Land';
+import Land from '../src/lands/NormalLand';
 
 
 describe('roll to own land test', () => {

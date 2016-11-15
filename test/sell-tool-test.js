@@ -18,7 +18,7 @@ describe('sell tool test', () => {
         tool2 = new Tool(2);
     })
     
-    it('should wait for response after executing sell tool command', () => {
+    it('should wait for command after executing sell tool command', () => {
         expect(player.status).to.equal('WAIT_FOR_COMMAND');
         
         player.execute(sellToolOneCommand);  

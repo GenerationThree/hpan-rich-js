@@ -4,7 +4,7 @@ import {beforeEach} from 'mocha'
 import Player from '../src/Player'
 import RollCommand from '../src/commands/RollCommand'
 import GameMap from '../src/GameMap'
-import Land from '../src/Land';
+import Land from '../src/lands/NormalLand';
 
 
 describe('roll to other land test', () => {
