@@ -128,6 +128,7 @@ export default class Player {
         this.byeRoundLeft = 3;
     }
     
-    roll() {
+    roll(dice) {
+        return dice.next();
     }
 }

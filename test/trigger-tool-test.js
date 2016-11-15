@@ -33,7 +33,7 @@ describe('trigger tool test', () => {
     });
     
     it('should_end_turn_when_triggering_a_blocker_on_the_way', () => {
-        gameMap = new GameMap(start, blockerLand, land2);
+        gameMap = new GameMap(start, blockerLand, land2, hospital);
         rollCommand = new RollCommand(gameMap);
 
         player.execute(rollCommand);

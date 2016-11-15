@@ -4,8 +4,7 @@ export default class UseRobotCommand extends Command {
         super();
         this.gameMap = gameMap;
     }
-
-
+    
     execute(player) {
         const currentPosition = player.currentLand.position;
 

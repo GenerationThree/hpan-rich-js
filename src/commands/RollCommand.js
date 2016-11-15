@@ -4,11 +4,13 @@ import GiftHouse from "../lands/GiftHouse";
 import Prison from "../lands/Prison";
 import Mine from "../lands/Mine";
 import Hospital from "../lands/Hospital";
+import Dice from '../Dice'
 
 export default class RollCommand extends Command{
     constructor(gameMap) {
         super();
         this.gameMap = gameMap;
+        this.dice = new Dice();
     }
     
     
@@ -16,7 +18,7 @@ export default class RollCommand extends Command{
         if ((player.currentLand instanceof Prison || player.currentLand instanceof Hospital)  && player.byeRoundLeft > 0) {
             player.byeRoundLeft --;
         } else {
-            const step = player.roll();
+            const step = player.roll(dice);
             
             for (let i = 1; i <= step; i++) {
                 const nextLand = this.gameMap.move(player.currentLand, i);

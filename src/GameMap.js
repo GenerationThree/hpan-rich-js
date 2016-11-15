@@ -11,11 +11,10 @@ export default class GameMap {
     }
 
     findHospital() {
-        // for (land of this.lands) {
-        //     if (land instanceof Hospital) {
-        //         return land;
-        //     }
-        // }
-        return this.lands[3]
+        for (let land of this.lands) {
+            if (land instanceof Hospital) {
+                return land;
+            }
+        }
     }
 }
