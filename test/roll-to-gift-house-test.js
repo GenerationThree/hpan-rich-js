@@ -6,8 +6,6 @@ import RollCommand from '../src/commands/RollCommand'
 import SelectGiftResponse from '../src/responses/SelectGiftResponse'
 import GameMap from '../src/GameMap'
 import GiftHouse from '../src/lands/GiftHouse';
-import Tool from "../src/tools/Tool";
-
 
 describe('roll to gift house test', () => {
     let player;

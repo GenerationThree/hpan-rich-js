@@ -1,3 +1,5 @@
+import NormalLand from "./lands/NormalLand";
+
 export default class Player {
     constructor(id, initMoney) {
         this.id = id;
@@ -10,6 +12,8 @@ export default class Player {
         this.isLucky = false;
         this.luckyRounds = 0;
         this.isInPrison = false;
+        this.byeRoundLeft = 0;
+        this.currentLand = new NormalLand(0);
     }
     
     execute(command) {
@@ -105,5 +109,13 @@ export default class Player {
     becomeLucky() {
         this.isLucky = true;
         this.luckyRounds = 5;
+    }
+
+    inprisoned() {
+        this.isInPrison = true;
+        this.byeRoundLeft = 2;
+    }
+    
+    roll() {
     }
 }

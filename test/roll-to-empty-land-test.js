@@ -8,7 +8,6 @@ import NotBuyLandResponse from '../src/responses/NotBuyLandResponse'
 import GameMap from '../src/GameMap'
 import Land from '../src/lands/NormalLand';
 
-
 describe('roll to empty land test', () => {
     let player;
     let rollCommand;
