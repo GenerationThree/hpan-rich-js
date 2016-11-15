@@ -1,11 +1,8 @@
-export default class Mine {
-    constructor(position, points) {
-        this.position = position;
-        this.points = points;
-        this.players = [];
-    }
+import Land from "./Land";
 
-    hasPlayOn() {
-        return this.players.length !== 0
+export default class Mine extends Land{
+    constructor(position, points) {
+        super(position);
+        this.points = points;
     }
 }

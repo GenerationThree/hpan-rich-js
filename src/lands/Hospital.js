@@ -1,10 +1,7 @@
-export default class Hospital {
-    constructor(position) {
-        this.position = position;
-        this.players = [];
-    }
+import Land from "./Land";
 
-    hasPlayOn() {
-        return this.players.length !== 0
+export default class Hospital extends Land{
+    constructor(position) {
+        super(position);
     }
 }

@@ -1,11 +1,10 @@
-export default class NormalLand {
+import Land from "./Land";
+
+export default class NormalLand extends Land{
     constructor(position, price) {
-        this.position = position;
+        super(position);
         this.price = price;
         this.level = 0;
-        this.isBlockered = false;
-        this.isBombed = false;
-        this.players = []; 
     }
 
     getPassingFee() {
@@ -16,14 +15,5 @@ export default class NormalLand {
     levelUp() {
         this.level++;
     }
-
-    hasPlayOn() {
-        return this.players.length !== 0
-    }
-
-    clearTool() {
-        this.isBlockered = false;
-        this.isBombed = false;
-    }
-
+  
 }

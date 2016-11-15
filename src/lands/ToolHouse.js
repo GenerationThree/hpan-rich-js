@@ -1,11 +1,8 @@
-export default class ToolHouse {
-    constructor(position) {
-        this.position = position;
-        this.players = [];
-    }
+import Land from "./Land";
 
-    hasPlayOn() {
-        return this.players.length !== 0
+export default class ToolHouse extends Land{
+    constructor(position) {
+        super(position);
     }
 }
     

@@ -1,10 +1,8 @@
-export default class GiftHouse {
+import Land from "./Land";
+
+export default class GiftHouse extends Land{
     constructor(position) {
-        this.position = position;
-        this.players = [];
+        super(position);
     }
 
-    hasPlayOn() {
-        return this.players.length !== 0
-    }
 }

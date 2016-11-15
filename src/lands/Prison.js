@@ -1,10 +1,8 @@
-export default class Prison {
-    constructor(position) {
-        this.position = position;
-        this.players = [];
-    }
+import Land from "./Land";
 
-    hasPlayOn() {
-        return this.players.length !== 0
+export default class Prison extends Land{
+    constructor(position) {
+        super(position);
     }
+    
 }

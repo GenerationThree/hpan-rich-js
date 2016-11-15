@@ -18,7 +18,7 @@ export default class RollCommand extends Command{
         if ((player.currentLand instanceof Prison || player.currentLand instanceof Hospital)  && player.byeRoundLeft > 0) {
             player.byeRoundLeft --;
         } else {
-            const step = player.roll(dice);
+            const step = player.roll(this.dice);
             
             for (let i = 1; i <= step; i++) {
                 const nextLand = this.gameMap.move(player.currentLand, i);
