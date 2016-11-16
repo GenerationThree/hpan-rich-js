@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './src/entry.js',
+    entry: './src/gameRunner.js',
     output: {
         path: __dirname + '/dist',
         filename: 'bundle.js'

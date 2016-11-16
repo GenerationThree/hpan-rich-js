@@ -38,7 +38,7 @@ describe('trigger tool test', () => {
 
         player.execute(rollCommand);
         
-        expect(player.status).to.equal('END_TURN');
+        expect(player.status).to.equal('WAIT_FOR_RESPONSE');
     })
 
     it('should_end_turn_when_triggering_a_bomb_on_the_way', () => {
@@ -58,7 +58,7 @@ describe('trigger tool test', () => {
 
         expect(player.currentLand).to.equal(blockerLand);
         expect(blockerLand.isBlockered).to.be.false;
-        expect(player.status).to.equal('END_TURN');
+        expect(player.status).to.equal('WAIT_FOR_RESPONSE');
     })
 
     it ('should_sent_to_hospital_when_triggering_bomb', () => {

@@ -1,10 +1,11 @@
 import Land from './Land';
 
-export default class ToolHouse extends Land{
+export default class MagicHouse extends Land{
     constructor(position) {
         super(position);
     }
-    
+
+
     getSymbol() {
         if (this.isBlockered) {
             return "#";
@@ -15,7 +16,6 @@ export default class ToolHouse extends Land{
 
         return this.hasPlayerOn() ?
             this.players[0].symbol
-            :"T";
+            :"M";
     }
 }
-    

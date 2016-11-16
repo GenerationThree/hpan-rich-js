@@ -17,4 +17,14 @@ export default class GameMap {
             }
         }
     }
+    
+    getSymbols(currentPlayer) {
+        let symbols =  this.lands.map((land) => {
+            return land.position === currentPlayer.currentLand.position ?
+                currentPlayer.symbol :
+                land.getSymbol();
+        })
+        
+        return symbols;
+    }
 }

@@ -6,43 +6,45 @@ import Mine from "../lands/Mine";
 import Hospital from "../lands/Hospital";
 import Dice from '../Dice'
 
-export default class RollCommand extends Command{
+export default class RollCommand extends Command {
     constructor(gameMap) {
         super();
         this.gameMap = gameMap;
         this.dice = new Dice();
     }
-    
-    
+
     execute(player) {
-        if ((player.currentLand instanceof Prison || player.currentLand instanceof Hospital)  && player.byeRoundLeft > 0) {
-            player.byeRoundLeft --;
+        if ((player.currentLand instanceof Prison || player.currentLand instanceof Hospital) && player.byeRoundLeft > 0) {
+            player.byeRoundLeft--;
         } else {
-            const step = player.roll(this.dice);
+            player.isInPrison = false;
+            player.isInHospital = false;
             
+            const step = player.roll(this.dice);
+            let nextLand;
+
+
             for (let i = 1; i <= step; i++) {
-                const nextLand = this.gameMap.move(player.currentLand, i);
+                nextLand = this.gameMap.move(player.currentLand, i);
+                
                 if (nextLand.isBlockered) {
-                    player.moveTo(nextLand);
                     nextLand.isBlockered = false;
-                    return 'END_TURN';
+                    break;
                 }
 
                 if (nextLand.isBombed) {
-                    player.moveTo(this.gameMap.findHospital());
-                    player.hospitalised();
                     nextLand.isBombed = false;
-                    return 'END_TURN';
+                    nextLand =  this.gameMap.findHospital();
+                    player.hospitalised();
+                    break;
                 }
             }
-            
-            player.moveTo(this.gameMap.move(player.currentLand, step));
-            player.isInPrison = false;
-            player.isInHospital = false;
+
+            player.moveTo(nextLand);
         }
-        
+
         let currentLand = player.currentLand;
-        
+
         if (currentLand instanceof ToolHouse) {
             return 'WAIT_FOR_RESPONSE';
         }
@@ -58,17 +60,21 @@ export default class RollCommand extends Command{
 
         if (currentLand instanceof Prison) {
             if (!player.isInPrison) {
-                player.inprisoned();
+                player.imprisoned();
             }
             return 'END_TURN';
         }
-        
+
+        if (currentLand instanceof Hospital) {
+            return 'END_TURN';
+        }
+
         if (currentLand.owner === undefined || currentLand.owner === player) {
             return 'WAIT_FOR_RESPONSE';
         } else {
             player.payPassingFee();
             return 'END_TURN';
         }
-        
+
     }
 }

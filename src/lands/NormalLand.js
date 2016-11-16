@@ -1,6 +1,6 @@
-import Land from "./Land";
+import Land from './Land';
 
-export default class NormalLand extends Land{
+export default class NormalLand extends Land {
     constructor(position, price) {
         super(position);
         this.price = price;
@@ -15,5 +15,18 @@ export default class NormalLand extends Land{
     levelUp() {
         this.level++;
     }
-  
+
+    getSymbol() {
+        if (this.isBlockered) {
+            return "#";
+        }
+        if (this.isBombed) {
+            return "@";
+        }
+
+        return this.hasPlayerOn() ?
+            this.players[0].symbol
+            : this.level.toString();
+    }
+
 }

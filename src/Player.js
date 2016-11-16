@@ -15,6 +15,23 @@ export default class Player {
         this.isInHospital = false;
         this.byeRoundLeft = 0;
         this.currentLand = new NormalLand(0);
+
+        if (id === 1) {
+            this.name = "钱夫人";
+            this.symbol = "Q";
+        }
+        if (id === 2) {
+            this.name = "阿土伯";
+            this.symbol = "A";
+        }
+        if (id === 3) {
+            this.name = "孙小美";
+            this.symbol = "S";
+        }
+        if (id === 4) {
+            this.name = "金贝贝";
+            this.symbol = "J";
+        }
     }
     
     execute(command) {
@@ -23,6 +40,23 @@ export default class Player {
     
     respond(response) {
         this.status = response.respond(this);
+    }
+
+    getInfo() {
+        let info = '';
+
+        info += 'name:' + this.name;
+        info += '\n';
+        info += 'money:' + this.money;
+        info += '\n';
+        info += 'points:' + this.points;
+        info += '\n';
+        info += 'tools:' + this.tools;
+        info += '\n';
+        info += 'lands:' + this.lands;
+        info += '\n';
+        
+        this.info = info;
     }
 
     moveTo(land) {
@@ -118,7 +152,7 @@ export default class Player {
         this.luckyRounds = 5;
     }
 
-    inprisoned() {
+    imprisoned() {
         this.isInPrison = true;
         this.byeRoundLeft = 2;
     }

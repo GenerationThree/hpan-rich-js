@@ -26,6 +26,14 @@ describe('sell land test', () => {
         expect(player.status).to.equal('WAIT_FOR_COMMAND');
     })
 
+    it('should sell land when having it', () => {
+        player.lands.push(land);
+
+        player.execute(sellLandCommand);
+
+        expect(player.lands.length).to.equal(0);
+    })
+    
     it('should not sell land when not having it', () => {
         player.lands.push(land2);
 

@@ -6,7 +6,7 @@ export default class Land {
         this.players = []
     }
 
-    hasPlayOn() {
+    hasPlayerOn() {
         return this.players.length !== 0
     }
 
@@ -14,5 +14,5 @@ export default class Land {
         this.isBlockered = false;
         this.isBombed = false;
     }
-
+    
 }
