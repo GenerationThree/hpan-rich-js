@@ -5,3 +5,9 @@
 ```
 npm test
 ```
+
+### play game
+
+```
+babel-node ./src/gameRunner.js
+```

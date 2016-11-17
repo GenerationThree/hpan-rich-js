@@ -8,7 +8,6 @@ import MagicHouse from "./lands/MagicHouse";
 import Prison from "./lands/Prison";
 import Mine from "./lands/Mine";
 
-import readline from 'readline'
 import RollCommand from "./commands/RollCommand";
 import SellToolCommand from "./commands/SellToolCommand";
 import SellLandCommand from "./commands/SellLandCommand";
@@ -130,7 +129,7 @@ export default class Controller {
                 case 'roll':
                     this.currentPlayer.execute(new RollCommand(this.gameMap));
 
-                    if (this.currentPlayer.currentLand.owner === undefined) {
+                    if (this.currentPlayer.currentLand instanceof NormalLand && this.currentPlayer.currentLand.owner === undefined) {
                         rl.question(this.currentPlayer.name + ' buy this land:', (response) => {
                             response = response.toLowerCase();
                             if (response === 'y') {
@@ -158,11 +157,7 @@ export default class Controller {
                             this.run(rl)
                         });
                     }
-                    if (this.currentPlayer.currentLand.owner !== undefined && this.currentPlayer.currentLand.owner !== this.currentPlayer) {
-                        this.currentPlayer = this.nextPlayer();
-                        this.displayMap();
-                        this.run(rl)
-                    }
+                
                     if (this.currentPlayer.currentLand instanceof ToolHouse) {
                         rl.question(this.currentPlayer.name + ' select tool (1,2,3):', (response) => {
                             response = parseInt(response);
@@ -181,6 +176,11 @@ export default class Controller {
                             this.run(rl)
                         });
                     }
+
+                    this.currentPlayer = this.nextPlayer();
+                    this.displayMap();
+                    this.run(rl)
+
                     break;
                 case 'selltool':
                     this.currentPlayer.execute(new SellToolCommand(parseInt(commands[1])));
